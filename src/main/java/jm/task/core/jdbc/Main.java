@@ -33,11 +33,7 @@ public class Main {
         userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
-        //
-        try {
-            Util.getConnect().close();// реализуйте алгоритм здесь
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Util.closeConnection();
+
     }
 }
