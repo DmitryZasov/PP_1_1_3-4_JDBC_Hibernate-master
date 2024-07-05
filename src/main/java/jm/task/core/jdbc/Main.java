@@ -15,7 +15,7 @@ public class Main {
     private static final User user4 = new User("Dasha", "Ivanova", (byte) 55);
 
     public static void main(String[] args) {
-        Util.getConnect();
+
 
         UserService userService = new UserServiceImpl();
 
@@ -33,7 +33,7 @@ public class Main {
         userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
-        Util.closeConnection();
+
 
     }
 }
