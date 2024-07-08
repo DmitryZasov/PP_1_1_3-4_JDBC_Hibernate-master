@@ -33,22 +33,32 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
 
             }
+        finally {
+            Util.closeConnection();
+
+        }
     }
 
 
     @Override
     public void dropUsersTable() {
-        try (PreparedStatement preparedStatement = getConnect().
+        try (PreparedStatement preparedStatement = connection.
                 prepareStatement("DROP TABLE IF EXISTS users")) {
         preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            Util.closeConnection();
+
+        }
+
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try (PreparedStatement preparedStatement = getConnect().
+        try (PreparedStatement preparedStatement = connection.
                 prepareStatement("INSERT INTO users(name, lastName, age) VALUES (?,?,?)")) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
@@ -57,17 +67,25 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            Util.closeConnection();
+        }
     }
 
     @Override
     public void removeUserById(long id) {
-        try (PreparedStatement statement = getConnect()
+        try (PreparedStatement statement = connection
                 .prepareStatement("DELETE FROM users WHERE id = ?")) {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            Util.closeConnection();
+
+        }
+
     }
 
     @Override
@@ -87,6 +105,11 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            Util.closeConnection();
+
+        }
+
         return allUser;
     }
 
@@ -97,5 +120,10 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            Util.closeConnection();
+
+        }
+
     }
 }
