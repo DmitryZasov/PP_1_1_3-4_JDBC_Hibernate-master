@@ -16,10 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        UserServiceImpl userService = new UserServiceImpl();
 
-        UserService userService = new UserServiceImpl();
+      //  UserService userService = new UserServiceImpl();
 
-        userService.createUsersTable();
+       // userService.createUsersTable();
 
         userService.saveUser(user1.getName(), user1.getLastName(), user1.getAge());
         userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
@@ -29,10 +30,10 @@ public class Main {
         for (User user : users) {
             System.out.println("User с именем — " + user.getName() + " добавлен в базу данных");
         }
-        userService.removeUserById(1);
-        userService.getAllUsers();
-        userService.cleanUsersTable();
-        userService.dropUsersTable();
+//        userService.removeUserById(1);
+//        userService.getAllUsers();
+//        userService.cleanUsersTable();
+//        userService.dropUsersTable();
 
 
     }
